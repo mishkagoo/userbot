@@ -9,7 +9,7 @@ from telethon import events, TelegramClient
 CONFIG_FILE = "config.json"
 DEFAULT_TYPING_SPEED = 0.3
 DEFAULT_CURSOR = "\u2588"  # Символ по умолчанию для анимации
-GITHUB_RAW_URL = "https://raw.githubusercontent.com/mishkagoo/userbot/main/main.py"  # Укажите URL вашего скрипта
+GITHUB_RAW_URL = "https://raw.githubusercontent.com/mishkagoo/userbot/refs/heads/main/main.py"  # Укажите URL вашего скрипта
 SCRIPT_VERSION = "1.4.3"
 
 # Проверяем наличие файла конфигурации
@@ -327,7 +327,7 @@ async def main():
     print(f"Запуск main()\nВерсия скрипта: {SCRIPT_VERSION}")
     check_for_updates()
     await client.start(phone=PHONE_NUMBER)
-    print("Скрипт успешно запущен! Для использования:")
+    print("Скрипт успешно запущен! Автор @mshkago Для использования:")
     print("- Напишите в чате /p (текст) для анимации печатания.")
     print("- Используйте /s (задержка) для изменения скорости печатания.")
     print("- Используйте /c (символ) для изменения символа курсора анимации.")
