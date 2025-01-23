@@ -10,7 +10,7 @@ CONFIG_FILE = "config.json"
 DEFAULT_TYPING_SPEED = 0.3
 DEFAULT_CURSOR = "\u2588"  # Символ по умолчанию для анимации
 GITHUB_RAW_URL = "https://raw.githubusercontent.com/mishkagoo/userbot/refs/heads/main/main.py"  # Укажите URL вашего скрипта
-SCRIPT_VERSION = "1.4.3"
+SCRIPT_VERSION = "1.4.31"
 
 # Проверяем наличие файла конфигурации
 if os.path.exists(CONFIG_FILE):
@@ -84,7 +84,7 @@ def check_for_updates():
         print(f"Ошибка при проверке обновлений: {e}")
 
 
-@client.on(events.NewMessage(pattern=r'/p (.+)'))
+@client.on(events.NewMessage(pattern=r'/p (.+)', func=lambda e: e.is_out))
 async def animated_typing(event):
     """Команда для печатания текста с анимацией."""
     global typing_speed, cursor_symbol
@@ -92,6 +92,7 @@ async def animated_typing(event):
         if not event.out:
             return
 
+        # Захватываем весь текст, включая переносы строк
         text = event.pattern_match.group(1)
         typed_text = ""
 
