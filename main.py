@@ -9,8 +9,8 @@ from telethon import events, TelegramClient
 CONFIG_FILE = "config.json"
 DEFAULT_TYPING_SPEED = 0.3
 DEFAULT_CURSOR = "\u2588"  # Символ по умолчанию для анимации
-GITHUB_RAW_URL = "https://raw.githubusercontent.com/mishkagoo/userbot/refs/heads/main/main.py"  # Укажите URL вашего скрипта
-SCRIPT_VERSION = "1.4.31"
+GITHUB_RAW_URL = "https://raw.githubusercontent.com/mishkago/userbot/main/main.py"  # Укажите URL вашего скрипта
+SCRIPT_VERSION = "1.4.32"
 
 # Проверяем наличие файла конфигурации
 if os.path.exists(CONFIG_FILE):
@@ -84,7 +84,7 @@ def check_for_updates():
         print(f"Ошибка при проверке обновлений: {e}")
 
 
-@client.on(events.NewMessage(pattern=r'/p (.+)', func=lambda e: e.is_out))
+@client.on(events.NewMessage(pattern=r'/p (.+)'))
 async def animated_typing(event):
     """Команда для печатания текста с анимацией."""
     global typing_speed, cursor_symbol
@@ -92,7 +92,6 @@ async def animated_typing(event):
         if not event.out:
             return
 
-        # Захватываем весь текст, включая переносы строк
         text = event.pattern_match.group(1)
         typed_text = ""
 
@@ -328,7 +327,7 @@ async def main():
     print(f"Запуск main()\nВерсия скрипта: {SCRIPT_VERSION}")
     check_for_updates()
     await client.start(phone=PHONE_NUMBER)
-    print("Скрипт успешно запущен! Автор @mshkago Для использования:")
+    print("Скрипт успешно запущен! Для использования:")
     print("- Напишите в чате /p (текст) для анимации печатания.")
     print("- Используйте /s (задержка) для изменения скорости печатания.")
     print("- Используйте /c (символ) для изменения символа курсора анимации.")
